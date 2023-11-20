@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau Dashboard Round Robin</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 90vh; /* Adjust height as needed */
+            border: none;
+        }
+    </style>
+    <script>
+        var urls = [
+            "file:///C:/Users/Suttipong.b/Desktop/Data%20Analytic/Final%20Auto%20Refresh%20Dashboard/KSK_Warroom.html", // Path for the first Tableau workbook
+            "file:///C:/Users/Suttipong.b/Desktop/Data%20Analytic/Final%20Auto%20Refresh%20Dashboard/daily_Report.html" // Path for the second Tableau workbook
+        ];
+        var currentIndex = 0;
+
+        function switchIframe() {
+            currentIndex = (currentIndex + 1) % urls.length;
+            document.getElementById("tableauIframe").src = urls[currentIndex];
+        }
+
+        function startRoundRobin() {
+            switchIframe(); // Switch immediately
+            setInterval(switchIframe, 10000); // Switch every 30 seconds
+        }
+    </script>
+</head>
+<body onload="startRoundRobin()">
+    <h1>Tableau Dashboard Viewer</h1>
+    <iframe id="tableauIframe" src=""></iframe>
+</body>
+</html>
